@@ -4,6 +4,7 @@
 
 int BMR(int gender, int height, int weight, int years);
 int Daily_Calories(int bmr);
+int Balance (int calories);
 
 int main(void)
 {
@@ -86,5 +87,38 @@ int Daily_Calories(int bmr)
     cprintf(C_YELLOW, "Базовый метаболизм (BMR): %i ккал\n", bmr);
     cprintf(C_GREEN, "Суточная норма калорий: %i ккал\n\n", calories);
 
+    Balance(calories);
+
     return calories;
+
+}
+
+int Balance (int calories)
+{
+    int or;
+    do
+    {
+        printf("Отлично! Теперь давайте определим что вы хотите сделать (1 - похудеть, 2 - набрать): ");
+        scanf("%i", &or);
+        
+        if (or != 1 && or != 2)
+        { 
+            cprintf(C_RED, "Ошибка! Введите 1 или 2\n"); 
+        }
+        while (getchar() != '\n');
+    } 
+    while (or != 1 && or != 2);
+
+    int balance;
+    if ( or == 1)
+    {
+        balance = calories - 400;
+    }
+    else
+    {
+        balance = calories + 400;
+    }
+    cprintf (C_BLUE,"Для достижения вашей цели вам нужно питаться на %i ккал в день\n", balance);
+
+    return balance;
 }
